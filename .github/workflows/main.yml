@@ -1,0 +1,26 @@
+name: Build Docker Image
+on:
+  push:
+    branches:
+      - main
+jobs:
+    build:
+      name: push docker image to docker hub
+      runs-on: alpine
+      steps:
+        - uses: actions/checkout@v2
+        - name: login to docker hub
+          id: docker-hub
+          env:
+            username: ${{secrets.DOCKERHUB_USERNAME}}
+            password: ${{secrets.DOCKERHUB_PASSWORD}}
+          run: |
+            docker login -u $username -p $password 
+        - name: build the docker image
+          id: build-docker-image-vsearch
+          run: |
+            ls -la 
+            docker build . -f Dockerfile -t joschlag/vsearch:2.29.1
+        - name: push the docker image
+          id: push-docker-image-vsearch
+          run: docker push ${{secrets.DOCKERHUB_USERNAME}}/vsearch:2.29.1
