@@ -1,6 +1,6 @@
 FROM continuumio/miniconda3:25.3.1-1
 
-ENV PATH /opt/conda/bin:$PATH
+ENV PATH=/opt/conda/bin:$PATH
 
 RUN conda config --append channels bioconda && \
 	conda config --append channels conda-forge && \
