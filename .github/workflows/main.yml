@@ -20,7 +20,7 @@ jobs:
           id: build-docker-image-vsearch
           run: |
             ls -la 
-            docker build . -f Dockerfile -t joschlag/vsearch:2.29.1
+            docker build . -f Dockerfile -t joschlag/vsearch:2.30.0
         - name: push the docker image
           id: push-docker-image-vsearch
-          run: docker push ${{secrets.DOCKERHUB_USERNAME}}/vsearch:2.29.1
+          run: docker push ${{secrets.DOCKERHUB_USERNAME}}/vsearch:2.30.0
